@@ -15,10 +15,9 @@ WORKDIR /shared-pkg
 RUN npm install --only=production
 WORKDIR /server
 
-COPY package*.json ./
-RUN npm install
+COPY . ./
+RUN npm ci
 
-COPY . .
 RUN npm run build
 
 FROM node:18-alpine
