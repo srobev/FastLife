@@ -6,6 +6,21 @@ RUN npm install
 COPY packages/shared/ ./
 RUN npm run build
 
+FROM node:18-alpine AS server-builder
+
+WORKDIR /server
+COPY packages/shared/package.json /shared-pkg/
+COPY --from=shared-builder /shared/dist /shared-pkg/dist
+WORKDIR /shared-pkg
+RUN npm install --only=production
+WORKDIR /server
+
+COPY package*.json ./
+RUN npm install --omit=dev
+
+COPY . .
+RUN npm run build
+
 FROM node:18-alpine
 
 WORKDIR /app
@@ -17,11 +32,12 @@ WORKDIR /shared-pkg
 RUN npm install --only=production
 WORKDIR /app
 
-# Install app deps
+# Install app prod deps
 COPY package*.json ./
 RUN npm install --only=production
 
-COPY . .
+# Copy built app from builder
+COPY --from=server-builder /server/dist ./dist
 
 EXPOSE 3000
 CMD ["node", "dist/app.js"]
