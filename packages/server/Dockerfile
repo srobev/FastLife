@@ -16,7 +16,7 @@ RUN npm install --only=production
 WORKDIR /server
 
 COPY . ./
-RUN npm ci
+RUN npm install
 
 RUN npm run build
 
