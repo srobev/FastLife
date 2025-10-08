@@ -16,7 +16,7 @@ RUN npm install --only=production
 WORKDIR /server
 
 COPY package*.json ./
-RUN npm install --omit=dev
+RUN npm install
 
 COPY . .
 RUN npm run build
