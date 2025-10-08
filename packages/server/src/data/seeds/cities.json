@@ -1,0 +1,36 @@
+[
+  {
+    "id": "city1",
+    "name": "New Start",
+    "pos_x": 100,
+    "pos_y": 100,
+    "traits_json": {
+      "rent": 300,
+      "jobs": ["fastfood", "retail"],
+      "school": 1.0,
+      "crime": 0.1
+    },
+    "markets_json": {
+      "wageMul": 0.8,
+      "pricesMul": 0.9,
+      "rentMul": 0.8
+    }
+  },
+  {
+    "id": "city2",
+    "name": "Metroville",
+    "pos_x": 200,
+    "pos_y": 150,
+    "traits_json": {
+      "rent": 500,
+      "jobs": ["retail", "clerk"],
+      "school": 1.2,
+      "crime": 0.2
+    },
+    "markets_json": {
+      "wageMul": 1.0,
+      "pricesMul": 1.0,
+      "rentMul": 1.0
+    }
+  }
+]
