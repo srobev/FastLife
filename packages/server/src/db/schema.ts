@@ -1,23 +1,23 @@
 // Drizzle schema for Postgres
 
-import { pgTable, text, integer, timestamp, boolean, jsonb } from 'drizzle-orm/pg-core';
+import { pgTable, serial, text, integer, timestamp, boolean, jsonb } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: serial().primaryKey(),
   email: text().notNull().unique(),
   pass_hash: text().notNull(),
   created_at: timestamp().defaultNow(),
 });
 
 export const worlds = pgTable('worlds', {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: serial().primaryKey(),
   name: text().notNull(),
   ruleset_json: jsonb(),
   created_at: timestamp().defaultNow(),
 });
 
 export const rooms = pgTable('rooms', {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: serial().primaryKey(),
   world_id: integer().references(() => worlds.id),
   code: text().notNull().unique(),
   status: text().notNull(), // 'lobby', 'playing', 'finished'
@@ -50,7 +50,7 @@ export const room_players = pgTable('room_players', {
 
 // Other tables as per spec, but minimal for now
 export const cities = pgTable('cities', {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: serial().primaryKey(),
   name: text().notNull(),
   pos_x: integer().notNull(),
   pos_y: integer().notNull(),
