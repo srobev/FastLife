@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "code": {"type": "string"},
+    "phase": {"type": "string", "enum": ["lobby", "planning", "resolving", "results", "finished"]},
+    "turnIndex": {"type": "integer"},
+    "players": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "ready": {"type": "boolean"}
+        },
+        "required": ["id", "name", "ready"]
+      }
+    }
+  },
+  "required": ["code", "phase", "turnIndex", "players"]
+}

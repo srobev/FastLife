@@ -1,0 +1,35 @@
+{
+  "name": "@fastlife/server",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/app.ts",
+    "start": "node dist/app.js",
+    "lint": "eslint src/**/*.ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "fastify": "^4.0.0",
+    "socket.io": "^4.0.0",
+    "socket.io-redis": "^6.0.0",
+    "ioredis": "^5.0.0",
+    "redis": "^4.0.0",
+    "drizzle-orm": "^0.30.0",
+    "postgres": "^3.0.0",
+    "jwt-simple": "^0.5.0",
+    "bcryptjs": "^2.4.0",
+    "ajv": "^8.0.0",
+    "@fastlife/shared": "*"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.0",
+    "@types/node": "^20.0.0",
+    "@types/jwt-simple": "^0.5.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}

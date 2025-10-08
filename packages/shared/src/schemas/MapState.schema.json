@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "cities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "pos": {
+            "type": "array",
+            "items": {"type": "number"},
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "traits": {
+            "type": "object",
+            "properties": {
+              "rent": {"type": "number"},
+              "jobs": {"type": "array", "items": {"type": "string"}},
+              "school": {"type": "number"},
+              "crime": {"type": "number"}
+            },
+            "required": ["rent", "jobs", "school", "crime"]
+          },
+          "markets": {
+            "type": "object",
+            "properties": {
+              "wageMul": {"type": "number"},
+              "pricesMul": {"type": "number"},
+              "rentMul": {"type": "number"}
+            },
+            "required": ["wageMul", "pricesMul", "rentMul"]
+          }
+        },
+        "required": ["id", "name", "pos", "traits", "markets"]
+      }
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "a": {"type": "string"},
+          "b": {"type": "string"},
+          "km": {"type": "number"},
+          "tolls": {"type": "number"},
+          "risk": {"type": "number"}
+        },
+        "required": ["a", "b", "km", "tolls", "risk"]
+      }
+    },
+    "markets": {
+      "type": "object",
+      "patternProperties": {
+        ".*": {
+          "type": "object",
+          "properties": {
+            "wageMul": {"type": "number"},
+            "pricesMul": {"type": "number"},
+            "rentMul": {"type": "number"}
+          },
+          "required": ["wageMul", "pricesMul", "rentMul"]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["cities", "routes", "markets"]
+}

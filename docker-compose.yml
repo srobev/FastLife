@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: fastlife
+      POSTGRES_USER: fastlife
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+  api:
+    build:
+      context: packages/server
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      NODE_ENV: development
+      SERVER_PORT: 3000
+      POSTGRES_URL: postgres://fastlife:password@postgres:5432/fastlife
+      REDIS_URL: redis://redis:6379
+      JWT_ACCESS_SECRET: dev_secret_access
+      JWT_REFRESH_SECRET: dev_secret_refresh
+      CORS_ORIGIN: http://localhost:5173
+  web:
+    build:
+      context: packages/client
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: http://localhost:3000
+
+volumes:
+  pgdata:

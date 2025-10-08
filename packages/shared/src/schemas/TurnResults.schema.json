@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "turnIndex": {"type": "integer"},
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "playerId": {"type": "string"},
+          "deltas": {
+            "type": "object",
+            "properties": {
+              "money": {"type": "number"},
+              "energy": {"type": "number"},
+              "health": {"type": "number"},
+              "happiness": {"type": "number"},
+              "education": {"type": "number"}
+            },
+            "additionalProperties": false
+          },
+          "events": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        },
+        "required": ["playerId", "deltas", "events"]
+      }
+    },
+    "cityEvents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "cityId": {"type": "string"},
+          "event": {"type": "string"}
+        },
+        "required": ["cityId", "event"]
+      }
+    }
+  },
+  "required": ["turnIndex", "results", "cityEvents"]
+}
