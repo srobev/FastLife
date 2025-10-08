@@ -16,7 +16,8 @@ services:
       - "6379:6379"
   api:
     build:
-      context: packages/server
+      context: .
+      dockerfile: packages/server/Dockerfile
     ports:
       - "3000:3000"
     depends_on:
@@ -32,7 +33,8 @@ services:
       CORS_ORIGIN: http://localhost:5173
   web:
     build:
-      context: packages/client
+      context: .
+      dockerfile: packages/client/Dockerfile
     ports:
       - "5173:5173"
     environment:
