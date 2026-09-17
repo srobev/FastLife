@@ -1,0 +1,17 @@
+{
+  "name": "FastLife Online",
+  "user": "ubuntu",
+  "install": "./.cursor/install.sh",
+  "start": "./.cursor/start.sh",
+  "terminals": [
+    {
+      "name": "server",
+      "command": "npm run dev --workspace=packages/server"
+    },
+    {
+      "name": "client",
+      "command": "VITE_API_URL=http://localhost:3000 npm run dev --workspace=packages/client"
+    }
+  ],
+  "ports": [3000, 5173]
+}

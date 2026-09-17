@@ -1,13 +1,9 @@
+import 'dotenv/config'; // load .env before any module reads process.env
 import fastify from 'fastify';
 import { Server } from 'socket.io';
-import { RedisAdapter } from 'socket.io-redis';
-import { config } from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 import { authRoutes } from './http/routes/auth';
-import jwt from 'jwt-simple';
-
-config(); // load .env
 
 const PORT = process.env.SERVER_PORT ? parseInt(process.env.SERVER_PORT) : 3000;
 
@@ -28,7 +24,7 @@ app.get('/version', async () => {
   }
 });
 
-await authRoutes(app);
+authRoutes(app);
 
 const server = app.server;
 
